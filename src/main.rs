@@ -36,6 +36,8 @@ fn main() {
 
     println!("A cor escolhida é: {}", what_is_color(Color::RbgColor(255, 255, 255)));
     println!("A cor escolhida é: {}", what_is_color(Color::CymkColor{cyan: 100, magenta: 50, yellow: 70, black: 255 }));
+
+    conteudo_opcional();
 }
 
 fn eh_fim_de_semana(dia_da_semana: DiaDaSemana) -> bool {
@@ -68,4 +70,22 @@ fn what_is_color(cor: Color) -> String {
         Color::RbgColor(_, _, _) => String::from("RBG desconhecido!"),
         Color::CymkColor { cyan: _, magenta: _, yellow: _, black: _ } => String::from("CYMK desconhecido!")
     }
+}
+
+fn conteudo_opcional() {
+    let conteudo_arquivo = ler_arquivo(String::from(""));
+    
+    match &conteudo_arquivo {
+        Some(valor) => println!("{}", valor),
+        None => println!("Arquivo não existe")
+    };    
+
+    if let Some(valor) = conteudo_arquivo {
+        println!("Agora, tenho certeza que o arquivo tem dados: {}", valor);
+    }
+}
+
+#[allow(unused)]
+fn ler_arquivo(caminho_arquivo: String) -> Option<String> {    
+    Some(String::from("Conteudo do arquivo..."))
 }
