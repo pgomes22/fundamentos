@@ -38,6 +38,7 @@ fn main() {
     println!("A cor escolhida é: {}", what_is_color(Color::CymkColor{cyan: 100, magenta: 50, yellow: 70, black: 255 }));
 
     conteudo_opcional();
+    vectors();
 }
 
 fn eh_fim_de_semana(dia_da_semana: DiaDaSemana) -> bool {
@@ -88,4 +89,22 @@ fn conteudo_opcional() {
 #[allow(unused)]
 fn ler_arquivo(caminho_arquivo: String) -> Option<String> {    
     Some(String::from("Conteudo do arquivo..."))
+}
+
+fn vectors() {
+    // let mut notas: Vec<f32> = Vec::new();
+    let mut notas: Vec<f32> = vec![10.0, 8.0, 6.5];
+    notas.push(10.0);
+    notas.push(8.8);
+    notas.push(6.5);
+
+    println!("{:?}", notas);
+
+    println!("Nota 1 = {}", notas[0]);
+
+    println!("Nota 6 = {}", match notas.get(6) {
+        Some(n) => *n,
+        None => 0.0
+    })
+
 }
