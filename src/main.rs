@@ -93,18 +93,33 @@ fn ler_arquivo(caminho_arquivo: String) -> Option<String> {
 
 fn vectors() {
     // let mut notas: Vec<f32> = Vec::new();
-    let mut notas: Vec<f32> = vec![10.0, 8.0, 6.5];
-    notas.push(10.0);
-    notas.push(8.8);
-    notas.push(6.5);
+    // notas.push(10.0);
+    // notas.push(8.8);
+    // notas.push(6.5);
 
-    println!("{:?}", notas);
+    let mut notas: Vec<f32> = vec![10.0, 8.0, 6.5];
+    let mut novas_notas: Vec<f32> = Vec::with_capacity(4);
+    novas_notas.push(1.0);
+    novas_notas.push(1.0);
+    novas_notas.push(1.0);
+    novas_notas.push(1.0);    
+    
+    println!("Capacidade = {}", notas.capacity());
 
     println!("Nota 1 = {}", notas[0]);
-
     println!("Nota 6 = {}", match notas.get(6) {
         Some(n) => *n,
         None => 0.0
-    })
+    });
+
+    // if let Some(nota) = notas.pop() {
+    //     println!("Último valor = {}",  nota);        
+    // }
+
+    while let Some(nota) = notas.pop() {
+        println!("Valor removido = {}", nota);
+    }
+
+    println!("{:?}", notas);
 
 }
