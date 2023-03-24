@@ -1,3 +1,23 @@
+#[allow(dead_code)]
+enum DiaDaSemana {
+    Domingo,
+    Segunda,
+    Terca,
+    Quarta, 
+    Quinta,
+    Sexta,
+    Sabado
+}
+
+#[allow(dead_code)]
+enum Color {
+    Red,
+    Green,
+    Blue,
+    RbgColor(u8, u8, u8),
+    CymkColor{cyan: u8, magenta: u8, yellow: u8, black: u8}
+}
+
 fn main() {
     let notas: [f32; 4] = [6.5; 4];
     let inteiro: usize = 0;
@@ -9,6 +29,20 @@ fn main() {
     }
 
     matriz();
+
+    let dia: DiaDaSemana = DiaDaSemana::Sabado;
+
+    println!("Eh fim de semana? {}", eh_fim_de_semana(dia));
+
+    println!("A cor escolhida é: {}", what_is_color(Color::RbgColor(255, 255, 255)));
+    println!("A cor escolhida é: {}", what_is_color(Color::CymkColor{cyan: 100, magenta: 50, yellow: 70, black: 255 }));
+}
+
+fn eh_fim_de_semana(dia_da_semana: DiaDaSemana) -> bool {
+    match dia_da_semana {
+        DiaDaSemana::Domingo | DiaDaSemana::Sabado => true,
+        _ => false
+    }
 }
 
 fn matriz() {
@@ -21,5 +55,17 @@ fn matriz() {
         for item in linha {
             println!("Item = {}", item);
         }
+    }
+}
+
+fn what_is_color(cor: Color) -> String {
+    match cor {
+        Color::Red => String::from("vermelho"),
+        Color::Green => String::from("verde"),
+        Color::Blue => String::from("azul"),
+        Color::RbgColor(0, 0, 0) | Color::CymkColor { cyan: _, magenta: _, yellow: _, black: 255 } 
+            => String::from("preta"),
+        Color::RbgColor(_, _, _) => String::from("RBG desconhecido!"),
+        Color::CymkColor { cyan: _, magenta: _, yellow: _, black: _ } => String::from("CYMK desconhecido!")
     }
 }
