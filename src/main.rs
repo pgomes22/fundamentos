@@ -39,6 +39,7 @@ fn main() {
 
     conteudo_opcional();
     vectors();
+    conta_corrente();
 }
 
 fn eh_fim_de_semana(dia_da_semana: DiaDaSemana) -> bool {
@@ -122,4 +123,31 @@ fn vectors() {
 
     println!("{:?}", notas);
 
+}
+
+struct Titular {
+    nome: String,
+    sobrenome: String
+}
+
+struct Conta {
+    titular: Titular,
+    saldo: f64
+}
+
+impl Conta {
+    fn sacar(&mut self, valor: f64) {
+        self.saldo -= valor;
+    }
+}
+
+fn conta_corrente() {
+    let mut conta = Conta{
+        titular: Titular { nome: String::from("Pedro"), sobrenome: String::from("Gomes") },
+        saldo: 100.0
+    };
+
+    conta.sacar(50.0);
+
+    println!("Dados da conta: Titular: {} {}, Saldo: {}", conta.titular.nome, conta.titular.sobrenome, conta.saldo);
 }
